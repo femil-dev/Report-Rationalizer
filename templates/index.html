@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Rationalizer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>
+            <img src="{{ url_for('static', filename='images/ey.png') }}" alt="Key Logo" class="key-logo">
+            Report Rationalizer
+        </h1>
+        
+        <div class="app-content">
+            <!-- File upload form -->
+            <form action="/upload" method="POST" enctype="multipart/form-data" class="upload-form">
+                <div class="form-group">
+                    <label for="files">Select Files to Compare:</label>
+                    <div class="file-input-container">
+                        <div class="file-input-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <p class="file-input-text">Drag and drop files here or click to browse</p>
+                        <div class="file-input-button">Choose Files</div>
+                        <input type="file" name="files" id="files" accept=".csv,.xml,.json,.xlsx" multiple required>
+                    </div>
+                    <p class="file-hint" id="file-status">No files selected (at least two required)</p>
+                </div>
+
+                <button type="submit">
+                    <i class="fas fa-sync-alt"></i> Compare Files
+                </button>
+            </form>
+
+            <!-- Display result -->
+            {% if result %}
+            <div class="result-message {{ message_class }}">
+                <div class="result-title">
+                    <div class="result-icon">
+                        {% if message_class == 'success' %}
+                        <i class="fas fa-check"></i>
+                        {% else %}
+                        <i class="fas fa-exclamation-triangle"></i>
+                        {% endif %}
+                    </div>
+                    <h2>Comparison Result</h2>
+                </div>
+                
+                <div class="result-details">
+                    <h3>Files Compared:</h3>
+                    <ul>
+                        {% for file_name in file_names %}
+                        <li><strong>{{ file_name }}</strong></li>
+                        {% endfor %}
+                    </ul>
+                    <p><strong>Result:</strong> {{ result }}</p>
+                    
+                    {% if download_link %}
+                    <a href="{{ download_link }}" class="download-link">
+                        <i class="fas fa-download"></i> Download Merged File
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        // Add interactive file input feedback
+        const fileInput = document.getElementById('files');
+        const fileStatus = document.getElementById('file-status');
+        
+        fileInput.addEventListener('change', function() {
+            if (this.files.length > 0) {
+                if (this.files.length === 1) {
+                    fileStatus.textContent = '1 file selected (at least two required)';
+                    fileStatus.style.color = '#e74c3c';
+                } else {
+                    fileStatus.textContent = this.files.length + ' files selected';
+                    fileStatus.style.color = '#2ecc71';
+                }
+            } else {
+                fileStatus.textContent = 'No files selected (at least two required)';
+                fileStatus.style.color = '#6c757d';
+            }
+        });
+    </script>
+</body>
+</html>

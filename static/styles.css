@@ -1,0 +1,382 @@
+/* Premium Design for Report Rationalizer */
+:root {
+    --primary: #2c3e50;
+    --primary-light: #34495e;
+    --secondary: #3498db;
+    --secondary-light: #5dade2;
+    --accent: #1abc9c;
+    --accent-light: #48c9b0;
+    --danger: #e74c3c;
+    --success: #2ecc71;
+    --light: #f8f9fa;
+    --dark: #343a40;
+    --gray: #6c757d;
+    --gray-light: #e9ecef;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+  }
+  
+  body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8edf2 100%);
+    color: var(--dark);
+    line-height: 1.7;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .container {
+    max-width: 850px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    position: relative;
+    transform: translateY(0);
+    transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+  }
+  
+  .container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Header Styles with Gradient */
+  h1 {
+    display: flex;
+    align-items: center;
+    padding: 30px;
+    margin: 0;
+    background: linear-gradient(to right, var(--primary), var(--primary-light));
+    color: white;
+    font-size: 28px;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+  }
+  
+  .key-logo {
+    height: 45px;
+    margin-right: 20px;
+    filter: brightness(0) invert(1);
+    transition: var(--transition);
+  }
+  
+  .key-logo:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Content Area */
+  .app-content {
+    padding: 30px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 25px;
+    color: var(--primary);
+    position: relative;
+    padding-bottom: 10px;
+  }
+  
+  h2:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 3px;
+  }
+  
+  /* Form Styles */
+  .upload-form {
+    margin-bottom: 35px;
+    background-color: var(--light);
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid var(--gray-light);
+  }
+  
+  .form-group {
+    margin-bottom: 25px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: var(--primary);
+    font-size: 15px;
+  }
+  
+  /* Custom File Input */
+  .file-input-container {
+    position: relative;
+    overflow: hidden;
+    border: 2px dashed var(--secondary);
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    background-color: rgba(52, 152, 219, 0.05);
+    transition: var(--transition);
+    cursor: pointer;
+  }
+  
+  .file-input-container:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+    border-color: var(--secondary-light);
+  }
+  
+  .file-input-container input[type="file"] {
+    position: absolute;
+    font-size: 100px;
+    opacity: 0;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .file-input-icon {
+    font-size: 36px;
+    color: var(--secondary);
+    margin-bottom: 15px;
+  }
+  
+  .file-input-text {
+    color: var(--gray);
+    font-size: 14px;
+  }
+  
+  .file-input-button {
+    background-color: var(--secondary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    margin-top: 15px;
+    font-weight: 500;
+    display: inline-block;
+    transition: var(--transition);
+  }
+  
+  .file-input-button:hover {
+    background-color: var(--secondary-light);
+  }
+  
+  /* Submit Button */
+  button[type="submit"] {
+    background: linear-gradient(to right, var(--accent), var(--accent-light));
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: var(--transition);
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(26, 188, 156, 0.3);
+  }
+  
+  button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 15px rgba(26, 188, 156, 0.4);
+  }
+  
+  button[type="submit"]:active {
+    transform: translateY(1px);
+  }
+  
+  /* Result Styles */
+  .result-message {
+    padding: 25px;
+    border-radius: 8px;
+    margin-top: 30px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .result-message::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+  }
+  
+  .success {
+    background-color: rgba(46, 204, 113, 0.1);
+    border: 1px solid rgba(46, 204, 113, 0.2);
+  }
+  
+  .success::before {
+    background-color: var(--success);
+  }
+  
+  .error {
+    background-color: rgba(231, 76, 60, 0.1);
+    border: 1px solid rgba(231, 76, 60, 0.2);
+  }
+  
+  .error::before {
+    background-color: var(--danger);
+  }
+  
+  .result-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .result-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+  }
+  
+  .success .result-icon {
+    background-color: var(--success);
+    color: white;
+  }
+  
+  .error .result-icon {
+    background-color: var(--danger);
+    color: white;
+  }
+  
+  .result-details ul {
+    margin: 15px 0;
+    padding-left: 20px;
+    list-style-type: none;
+  }
+  
+  .result-details li {
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 25px;
+  }
+  
+  .result-details li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--secondary);
+    font-size: 20px;
+    line-height: 1;
+  }
+  
+  .result-details strong {
+    color: var(--primary);
+  }
+  
+  .download-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 30px;
+    background: linear-gradient(to right, var(--secondary), var(--secondary-light));
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+    letter-spacing: 0.5px;
+  }
+  
+  .download-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 15px rgba(52, 152, 219, 0.4);
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .container {
+    animation: fadeIn 0.6s ease-out;
+  }
+  
+  .result-message {
+    animation: fadeIn 0.6s ease-out 0.2s;
+    animation-fill-mode: both;
+  }
+  /* Enhanced logo styling */
+.key-logo {
+    height: 45px;
+    margin-right: 20px;
+    /* Remove the existing filter */
+    filter: none;
+    /* Add a light background with padding and shadow for contrast */
+    background-color: white;
+    padding: 8px;
+    border-radius: 8px;
+    /* Add subtle shadow for better separation from background */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: var(--transition);
+}
+
+/* Optional: add a slight border for even more definition */
+.key-logo {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Make sure the header has enough padding to accommodate the logo properly */
+h1 {
+    display: flex;
+    align-items: center;
+    padding: 30px;
+    margin: 0;
+    background: linear-gradient(to right, var(--primary), var(--primary-light));
+    color: white;
+    font-size: 28px;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .container {
+      margin: 15px;
+    }
+    
+    h1 {
+      padding: 20px;
+      font-size: 22px;
+    }
+    
+    .key-logo {
+      height: 35px;
+    }
+    
+    .app-content {
+      padding: 20px;
+    }
+    
+    .file-input-container {
+      padding: 20px;
+    }
+  }
+  
+  /* Add Font Awesome for icons (add this link to your HTML head) */
+  /* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> */
